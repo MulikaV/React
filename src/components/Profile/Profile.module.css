@@ -1,0 +1,9 @@
+
+.content {
+    grid-area: ctn;
+    background-color: cornflowerblue;
+}
+
+.content img{
+    height: 180px;
+}

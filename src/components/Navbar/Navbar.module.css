@@ -1,0 +1,11 @@
+.nav{
+    display: block;
+    grid-area: nv;
+    background-color: darkgreen;
+
+}
+.item {
+    color: #fff;
+    text-align: center;
+    margin-top: 3%;
+}
