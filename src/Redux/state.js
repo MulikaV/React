@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 const store = {
   _state: {
     profilePage: {
@@ -20,7 +25,8 @@ const store = {
         {id: 2, name: 'Valera'},
         {id: 3, name: 'Olga'},
         {id: 4, name: 'Vova'}
-      ]
+      ],
+      newMessageText: ''
     }
   },
   _callSubscriber() {
@@ -50,7 +56,7 @@ const store = {
   }*/
   dispatch(action) {
     switch (action.type) {
-      case 'ADD-POST':
+      case ADD_POST:
         let newPost = {
           id: 5,
           message: this._state.profilePage.newPostText,
@@ -62,13 +68,40 @@ const store = {
         this._callSubscriber(this._state);
         break;
 
-      case 'UPDATE-NEW-POST-TEXT':
+      case UPDATE_NEW_POST_TEXT:
         this._state.profilePage.newPostText = action.postText;
+        this._callSubscriber(this._state);
+        break;
+
+      case ADD_MESSAGE:
+        let newMessage = {
+          id: 5,
+          message: this._state.messagePage.newMessageText
+        };
+
+        this._state.messagePage.messages.push(newMessage);
+        this._state.messagePage.newMessageText = '';
+
+        this._callSubscriber(this._state);
+        break;
+
+      case UPDATE_NEW_MESSAGE_TEXT :
+        this._state.messagePage.newMessageText = action.messageText;
         this._callSubscriber(this._state);
         break;
     }
   }
 };
+
+export const addNewMessageAC = () => ({type:ADD_MESSAGE});
+
+export const updateNewMessageText = (text) =>
+  ({type:UPDATE_NEW_MESSAGE_TEXT, messageText: text});
+
+export const addNewPostAC = () => ({type: ADD_POST});
+
+export const updateNewPostTextAC = (text) =>
+  ({type: UPDATE_NEW_POST_TEXT, postText: text});
 
 
 export default store;
