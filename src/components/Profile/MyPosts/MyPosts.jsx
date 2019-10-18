@@ -1,17 +1,16 @@
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addNewPostAC, updateNewPostTextAC} from "../../../Redux/state";
 
 const MyPosts = (props) => {
 
-  const addPost = () => {
-    props.dispatch(addNewPostAC());
+  const onPostChange = (e) => {
+    let text = e.target.value;
+    props.updateNewPostText(text);
   };
 
-  const onPostChange = (e) => {
-    let text =e.target.value;
-    props.dispatch(updateNewPostTextAC(text));
+  const addPost = () => {
+    props.addPost();
   };
 
   const postsElements = props.posts
