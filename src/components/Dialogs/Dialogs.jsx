@@ -5,11 +5,11 @@ import Message from "./Message/Message";
 import {addNewMessageAC, updateNewMessageText} from "../../Redux/dialogs-reducer";
 
 const Dialogs = (props) => {
-
-  const dialogs = props.dialogs
+debugger;
+  const dialogs = props.messagePage.dialogs
     .map(el => <DialogItem name={el.name} id={el.id}/>);
 
-  const messages = props.messages
+  const messages = props.messagePage.messages
     .map(el => <Message message={el.message}/>);
 
 
@@ -30,7 +30,7 @@ const Dialogs = (props) => {
       <div className={s.messages}>
         {messages}
         <div>
-          <textarea onChange={updateNewMessage} value={props.newMessageText}/>
+          <textarea onChange={updateNewMessage} value={props.messagePage.newMessageText}/>
         </div>
         <div>
           <button onClick={addMessage}>Add message</button>
