@@ -2,6 +2,10 @@ import React from 'react';
 import s from './Users.module.css';
 import * as axios from 'axios';
 import userAvatar from './../../assets/images/userimage.png'
+import {
+  Card, CardImg, CardText, CardBody,
+  CardTitle, CardSubtitle, Button
+} from 'reactstrap';
 
 class Users extends React.Component {
 
@@ -13,27 +17,25 @@ class Users extends React.Component {
   }
 
   render() {
-    return <div>
+    return <div className={s.users}>
       {
         this.props.users.map(u => (
-          <div key={u.id}>
-            <span>
-              <div>
-                <img src={u.photos.small != null ? u.photos.small : userAvatar} alt="avatar"/>
-              </div>
-            </span>
-            <span>
-              <div>
-                {u.followed
-                  ? <button onClick={() => this.props.unfollow(u.id)}>Unfollow</button>
-                  : <button onClick={() => this.props.follow(u.id)}>Follow</button>}
-              </div>
-            </span>
-            <span>
-              <div>{u.name}</div>
-              <div>{u.status}</div>
-            </span>
-          </div>
+          <Card key={u.id} className={s.userCard}>
+            <img className={s.userAvatar} src={u.photos.small != null ? u.photos.small : userAvatar} alt="avatar"/>
+            <CardBody>
+              <CardTitle>
+                <div>{u.name}</div>
+              </CardTitle>
+              <CardText>
+                <div>{u.status}</div>
+              </CardText>
+              {u.followed
+                ? <Button onClick={() => this.props.unfollow(u.id)}>Unfollow</Button>
+                : <Button onClick={() => this.props.follow(u.id)}>Follow</Button>}
+            </CardBody>
+
+
+          </Card>
         ))
       }
     </div>
