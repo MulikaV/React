@@ -16,7 +16,7 @@
 .app-wrapper-content {
   flex-grow: 2;
   width: 520px;
-  height: 955px;
+  min-height: 895px;
   border: 1px solid #dddddd;
   background-color: #dfe3eb;
 }
