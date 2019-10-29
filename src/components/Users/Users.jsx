@@ -3,26 +3,24 @@ import s from './Users.module.css';
 import userAvatar from './../../assets/images/userimage.png'
 import {Card, CardText, CardBody,
   CardTitle, Button} from 'reactstrap';
-import ReactPaginate from 'react-paginate';
+import Pagination from "react-js-pagination";
 
 const Users = (props) => {
+  debugger;
   const totalPages = Math.ceil(props.totalUsersCount / props.pageSize);
   return <div>
-    <div id="react-paginate" className={s.center}>
-      <ReactPaginate
-        previousLabel={'Prev'}
-        nextLabel={'Next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        pageCount={totalPages}
-        marginPagesDisplayed={1}
-        pageRangeDisplayed={3}
-        onPageChange={(e) => props.onPageChanged(e)}
-        containerClassName={'pagination'}
-        subContainerClassName={'pages pagination'}
-        activeClassName={'active'}
+    <div className={s.left}>
+      <Pagination
+        hideDisabled
+        activePage={props.currentPage}
+        itemsCountPerPage={props.pageSize}
+        totalItemsCount={props.totalUsersCount}
+        pageRangeDisplayed={5}
+        onChange={props.onPageChanged}
       />
     </div>
+
+
 
     <div className={s.users}>
       {
