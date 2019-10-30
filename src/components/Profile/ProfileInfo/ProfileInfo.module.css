@@ -1,6 +1,11 @@
+.profile {
+  display: flex;
+}
 
-.content img {
-  height: 280px;
+.avatar img{
+  width:200px;
+  border-radius: 50%;
+  margin: 20px;
 }
 
 .description_block {
