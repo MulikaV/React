@@ -1,9 +1,13 @@
 import React from 'react';
 import s from './Users.module.css';
 import userAvatar from './../../assets/images/userimage.png'
-import {Card, CardText, CardBody,
-  CardTitle, Button} from 'reactstrap';
+import {
+  Card, CardText, CardBody,
+  CardTitle, Button
+} from 'reactstrap';
 import Pagination from "react-js-pagination";
+import {NavLink} from "react-router-dom";
+
 
 const Users = (props) => {
   debugger;
@@ -21,12 +25,14 @@ const Users = (props) => {
     </div>
 
 
-
     <div className={s.users}>
       {
         props.users.map(u => (
+
           <Card key={u.id} className={s.userCard}>
-            <img className={s.userAvatar} src={u.photos.small != null ? u.photos.small : userAvatar} alt="avatar"/>
+            <NavLink to={'/profile/' + u.id}>
+              <img className={s.userAvatar} src={u.photos.small != null ? u.photos.small : userAvatar} alt="avatar"/>
+            </NavLink>
             <CardBody>
               <CardTitle>
                 <div>{u.name}</div>
@@ -39,6 +45,7 @@ const Users = (props) => {
                 : <Button onClick={() => props.follow(u.id)}>Follow</Button>}
             </CardBody>
           </Card>
+
         ))
       }
     </div>

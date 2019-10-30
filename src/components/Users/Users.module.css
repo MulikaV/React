@@ -16,16 +16,6 @@
   align-items: stretch;
 }
 
-#react-paginate ul {
-  display: inline-block;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 0 auto;
-}
-
-#react-paginate li {
-  display: inline-block;
-}
 
 .left {
   display: flex;
