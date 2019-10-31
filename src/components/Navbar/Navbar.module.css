@@ -1,17 +1,11 @@
 .nav{
   padding-top: 30px;
   width: 150px;
+  display: flex;
+  flex-direction: column;
 }
-
-.item {
-  width: 116px;
-  height: 35px;
-  margin-bottom: 10px;
-}
-
 
 .item a {
-  display: block;
   height: 100%;
   color: #3b5995;
   font-family: Tahoma;
@@ -22,9 +16,6 @@
 }
 
 .item:hover {
-
-  width: 150px;
-  height: 35px;
   background-color: #385592;
   background-image: linear-gradient(to right, #ffffff 0%, #dadfe8 100%);
 }

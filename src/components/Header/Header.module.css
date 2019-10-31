@@ -16,3 +16,17 @@
   font-weight: 700;
   line-height: 43.06px;
 }
+
+.loginBlock{
+  float: right;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 43.06px;
+  margin-top: 12px;
+  color:white;
+}
+
+.loginBlock a {
+  color: white;
+  text-decoration: none;
+}
