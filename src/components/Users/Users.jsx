@@ -7,11 +7,11 @@ import {
 } from 'reactstrap';
 import Pagination from "react-js-pagination";
 import {NavLink} from "react-router-dom";
+import * as axios from "axios/index";
+import {followUser, unfollowUser} from "../../api/api";
 
 
 const Users = (props) => {
-  debugger;
-  const totalPages = Math.ceil(props.totalUsersCount / props.pageSize);
   return <div>
     <div className={s.left}>
       <Pagination
@@ -41,8 +41,22 @@ const Users = (props) => {
                 <div>{u.status}</div>
               </CardText>
               {u.followed
-                ? <Button onClick={() => props.unfollow(u.id)}>Unfollow</Button>
-                : <Button onClick={() => props.follow(u.id)}>Follow</Button>}
+                ? <Button onClick={() => {
+                  unfollowUser(u.id)
+                    .then(data => {
+                      if (data.resultCode === 0) {
+                        props.unfollow(u.id);
+                      }
+                    });
+                }}>Unfollow</Button>
+                : <Button onClick={() => {
+                  followUser(u.id)
+                    .then(data => {
+                      if (data.resultCode === 0) {
+                        props.follow(u.id);
+                      }
+                    });
+                }}>Follow</Button>}
             </CardBody>
           </Card>
 
