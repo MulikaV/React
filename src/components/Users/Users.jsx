@@ -7,10 +7,13 @@ import {
 } from 'reactstrap';
 import Pagination from "react-js-pagination";
 import {NavLink} from "react-router-dom";
-import {usersApi} from "../../api/api";
+
+
 
 
 const Users = (props) => {
+
+
   return <div>
     <div className={s.left}>
       <Pagination
@@ -40,27 +43,16 @@ const Users = (props) => {
                 <div>{u.status}</div>
               </CardText>
               {u.followed
-                ? <Button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                  props.toggleFollowingProgress(true,u.id);
-                  usersApi.unfollowUser(u.id)
-                    .then(data => {
-                      if (data.resultCode === 0) {
-                        props.unfollow(u.id);
-                      }
-                      props.toggleFollowingProgress(false,u.id);
-                    });
-                }}>Unfollow</Button>
-                : <Button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
-                  debugger;
-                  props.toggleFollowingProgress(true,u.id);
-                  usersApi.followUser(u.id)
-                    .then(data => {
-                      if (data.resultCode === 0) {
-                        props.follow(u.id);
-                      }
-                      props.toggleFollowingProgress(false,u.id);
-                    });
-                }}>Follow</Button>}
+                ? <Button
+                  disabled={props.followingInProgress.some(id => id === u.id)}
+                  onClick={() => {
+                    props.unfollowUser(u.id);
+                  }}>Unfollow</Button>
+                : <Button
+                  disabled={props.followingInProgress.some(id => id === u.id)}
+                  onClick={() => {
+                    props.followUser(u.id);
+                  }}>Follow</Button>}
             </CardBody>
           </Card>
 

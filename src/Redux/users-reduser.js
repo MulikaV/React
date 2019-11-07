@@ -86,15 +86,41 @@ export const toggleFollowingProgress = (isFetching, userId) => ({
   userId
 });
 
-export const getUsers = (currentPage,pageSize) => {
+export const getUsers = (currentPage, pageSize) => {
   return (dispatch) => {
     dispatch(toggleIsFetching(true));
     dispatch(setCurrentPage(currentPage));
-    usersApi.getUsers(currentPage,pageSize)
+    usersApi.getUsers(currentPage, pageSize)
       .then(data => {
         dispatch(toggleIsFetching(false));
         dispatch(setUsers(data.items));
         dispatch(setTotalUsersCount(data.totalCount));
+      });
+  }
+};
+
+export const unfollowUser = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersApi.unfollowUser(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(unfollow(userId));
+        }
+        dispatch(toggleFollowingProgress(false, userId));
+      });
+  }
+};
+
+export const followUser = (userId) => {
+  return (dispatch) => {
+    dispatch(toggleFollowingProgress(true, userId));
+    usersApi.followUser(userId)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(follow(userId));
+        }
+        dispatch(toggleFollowingProgress(false, userId));
       });
   }
 };

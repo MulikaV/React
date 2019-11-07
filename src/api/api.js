@@ -29,4 +29,24 @@ export const usersApi = {
   }
 };
 
+export const authApi = {
 
+  getAuth() {
+    return instance.get(`auth/me`)
+      .then(
+        response => response.data
+      )
+  }
+
+};
+
+
+export const profileApi = {
+
+  getProfile(userId) {
+    return instance.get(`profile/${userId}`)
+      .then(
+        response => response.data
+      )
+  }
+};
