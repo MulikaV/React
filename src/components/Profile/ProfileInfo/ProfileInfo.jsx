@@ -2,6 +2,7 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Preloader from "../../common/Preloader/Preloader";
 import userAvatar from './../../../assets/images/userimage.png'
+import ProfileStatus from "./ProfileStatus"
 
 
 const ProfileInfo = (props) => {
@@ -18,6 +19,7 @@ const ProfileInfo = (props) => {
         </div>
         <div className={s.user_info}>
           <h2>{props.profile.fullName}</h2>
+          <ProfileStatus status="Hello world!"/>
           <h5>About Me : {props.profile.aboutMe}</h5>
           {props.profile.lookingForAJob && <h5>Job : {props.profile.lookingForAJobDescription} </h5>}
         </div>
