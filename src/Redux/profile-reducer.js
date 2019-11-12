@@ -42,7 +42,6 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         status: action.status
-
       };
 
     default:
@@ -62,23 +61,34 @@ export const getUserProfile = (userId) => {
   return (dispatch) => {
     profileApi.getProfile(userId)
       .then(data => {
+        debugger;
         dispatch(setUserProfile(data));
       });
   }
 };
 
 
-export const getUserProfileStatus = (userId) => {
+export const getUserStatus = (userId) => {
 
   return (dispatch) => {
     profileApi.getProfileStatus(userId)
-      .then(response => {
+      .then(data => {
         debugger;
-        dispatch(setUserStatus(response.data));
+        dispatch(setUserStatus(data));
       });
-
   }
+};
 
+export const updateStatus = (status) => {
+
+  return (dispatch) => {
+      profileApi.updateStatus(status)
+      .then(data => {
+        if (data.resultCode === 0) {
+          dispatch(setUserStatus(status));
+        }
+      });
+  }
 };
 
 export default profileReducer;

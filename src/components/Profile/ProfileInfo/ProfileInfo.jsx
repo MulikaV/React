@@ -20,7 +20,7 @@ debugger;
         </div>
         <div className={s.user_info}>
           <h2>{props.profile.fullName}</h2>
-          <ProfileStatus status="Ку ку епта" />
+          <ProfileStatus status={props.status }  updateStatus={props.updateStatus} />
           <h5>About Me : {props.profile.aboutMe}</h5>
           {props.profile.lookingForAJob && <h5>Job : {props.profile.lookingForAJobDescription} </h5>}
         </div>
