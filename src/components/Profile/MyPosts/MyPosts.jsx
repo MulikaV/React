@@ -7,6 +7,7 @@ const MyPosts = (props) => {
 
 
   const addNewPost = (value) => {
+    debugger;
     props.addNewPost(value.newPostText);
   };
 
