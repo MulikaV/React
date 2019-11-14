@@ -1,4 +1,5 @@
 .dialogs {
+  color:black;
   display: grid;
   grid-template-columns: 2fr 10fr;
 }
@@ -8,14 +9,13 @@
 }
 
 .dialog a{
-  color: white;
   text-decoration: none;
 }
 
 .messages {
   padding: 10px;
-  color: white;
 }
+
 
 .message {
 

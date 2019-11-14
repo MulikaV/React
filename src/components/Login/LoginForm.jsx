@@ -1,25 +1,18 @@
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
 
-const Login = (props) => {
-  return <div>
-    <h1>LOGIN</h1>
-    <LoginForm/>
-  </div>
-
-};
 
 let LoginForm = (props) => {
-  return <form>
+  return <form onSubmit={props.handleSubmit}>
     <div>
-      <label htmlFor="login">Login</label>
-      <Field name="login" placeholder="Enter your login" component="input"/>
+      <label htmlFor="email">Email</label>
+      <Field name="email" placeholder="Enter your email" component="input" type="email"/>
     </div>
     <div>
       <label htmlFor="password">Password</label>
       <Field name="password" type="password" placeholder="Enter your password" component="input"/></div>
     <div>
-      <Field type="checkbox" component="input" name ="rememberMe"/> Remember me
+      <Field type="checkbox" component="input" name="rememberMe"/> Remember me
     </div>
     <div>
       <button type="submit">Login</button>
@@ -27,8 +20,6 @@ let LoginForm = (props) => {
   </form>
 };
 
-LoginForm = reduxForm({
-  form: 'login'
-})(LoginForm)
+LoginForm = reduxForm({form: 'login'})(LoginForm);
 
-export default Login;
+export default LoginForm;

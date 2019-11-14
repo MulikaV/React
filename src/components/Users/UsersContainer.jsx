@@ -38,10 +38,7 @@ class UsersContainer extends React.Component {
                  followingInProgress={this.props.followingInProgress}
                  unfollowUser={this.props.unfollowUser}
                  followUser={this.props.followUser}
-
-
         />
-
       }
     </>
   }
@@ -59,5 +56,5 @@ const mapStateToProps = (state) => {
 };
 
 export default compose(connect(mapStateToProps, {
-  follow, unfollow, toggleFollowingProgress, getUsers,unfollowUser,followUser
-}),withAuthRedirect)(UsersContainer);
+  follow, unfollow, toggleFollowingProgress, getUsers, unfollowUser, followUser
+}), withAuthRedirect)(UsersContainer);

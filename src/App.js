@@ -6,7 +6,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import Login from "./components/Login/login";
+import LoginContainer from "./components/Login/loginContainer";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route path="/profile/:userId?"
                  render={() => <ProfileContainer/>}/>
           <Route path="/users" component={UsersContainer}/>
-          <Route path="/login" component={Login}/>
+          <Route path="/login" component={LoginContainer}/>
         </div>
         <div className="app-wrapper-aside">
 
