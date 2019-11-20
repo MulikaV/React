@@ -1,6 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
-import {Textarea} from "../../FormControls/FormControls";
+import {Textarea} from "../FormControls/FormControls";
 import {maxLength50, required} from "../../utils/validators/validators";
 
 let DialogsForm = (props) => {

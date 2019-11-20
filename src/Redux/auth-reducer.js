@@ -1,4 +1,5 @@
 import {authApi} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const SET_USER_AUTH_DATA = 'SET_USER_AUTH_DATA';
 const SET_USER_LOGIN = 'SET_USER_LOGIN';
@@ -30,9 +31,8 @@ export const setUserAuthData = (userId,login,email,isAuth) => ({
   payload:{userId,login,email,isAuth}});
 
 
-export const setAuthData = () => {
-  return (dispatch) => {
-    authApi.getAuth()
+export const setAuthData = () =>  (dispatch) => {
+    return authApi.getAuth()
       .then(data => {
         debugger;
         if (data.resultCode === 0){
@@ -41,22 +41,23 @@ export const setAuthData = () => {
         }
       })
   }
-};
+;
 
-export const login =(email,password,rememberMe) => {
-  return (dispatch)=>{
+export const login =(email,password,rememberMe) => (dispatch)=>{
     authApi.login(email,password,rememberMe)
       .then(data => {
         debugger;
         if(data.resultCode === 0){
           dispatch(setAuthData());
+        } else {
+          let message = data.messages.length >0 ? data.messages[0] : "Some Error" ;
+          dispatch(stopSubmit("login",{_error:message}));
         }
+
       })
-  }
 };
 
-export const logout =() => {
-  return (dispatch)=>{
+export const logout =() =>(dispatch)=>{
     authApi.logout()
       .then(data => {
         debugger;
@@ -64,7 +65,6 @@ export const logout =() => {
           dispatch(setUserAuthData(null,null,null,false));
         }
       })
-  }
 };
 
 

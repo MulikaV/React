@@ -1,7 +1,8 @@
 import React from "react";
 import {Field, reduxForm} from 'redux-form'
-import {Checkbox, Input} from "../../FormControls/FormControls";
+import {Checkbox, Input} from "../FormControls/FormControls";
 import {maxLength20, required, minLength6, email} from "../../utils/validators/validators";
+import styles from "../FormControls/FormControls.module.css";
 
 
 let LoginForm = (props) => {
@@ -14,8 +15,11 @@ let LoginForm = (props) => {
     <div>
       <Field  component={Checkbox}  name="rememberMe" label="Remember me" />
     </div>
+    { props.error &&
+       <div className={styles.invalidTooltip}>{props.error}</div>
+    }
     <div>
-      <button type="submit" className="btn btn-primary">Login</button>
+      <button type="submit" className="btn btn-primary ">Login</button>
     </div>
   </form>
 };

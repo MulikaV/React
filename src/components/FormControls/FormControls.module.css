@@ -11,6 +11,7 @@ border: solid 1px red;
   background-color: rgba(220,53,69,.9);
   padding: .25rem .5rem;
   border-radius: .25rem;
+  width: 20%;
 }
 
 .checkbox{
@@ -18,8 +19,4 @@ border: solid 1px red;
   height: 20px;
 }
 
-.center {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-}
+

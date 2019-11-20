@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, reduxForm} from "redux-form";
 import {maxLength50,required} from "../../../utils/validators/validators";
-import {Textarea} from "../../../FormControls/FormControls";
+import {Textarea} from "../../FormControls/FormControls";
 
 let MyPostsForm = (props) => {
 
