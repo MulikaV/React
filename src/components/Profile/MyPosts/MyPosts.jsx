@@ -2,11 +2,14 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from "./Post/Post";
 import MyPostsForm from "./MyPostsForm";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {addNewPost} from "../../../Redux/profile-reducer";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
 
 
-  const addNewPost = (value) => {
+  const addPost = (value) => {
     debugger;
     props.addNewPost(value.newPostText);
   };
@@ -17,12 +20,19 @@ const MyPosts = (props) => {
   return (
     <div className={s.postsBlock}>
       <h3>My posts</h3>
-      <MyPostsForm onSubmit={addNewPost}/>
+      <MyPostsForm onSubmit={addPost}/>
       <div className={s.posts}>
         {postsElements}
       </div>
     </div>
   )
+});
+
+const mapStateToProps = (state) => {
+  return {
+    posts: state.profilePage.posts,
+    newPostText: state.profilePage.newPostText
+  }
 };
 
-export default MyPosts;
+export default compose(connect(mapStateToProps, {addNewPost}))(MyPosts)
