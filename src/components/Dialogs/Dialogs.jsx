@@ -5,16 +5,15 @@ import Message from "./Message/Message";
 import {Redirect} from "react-router-dom";
 import DialogsForm from "./DialogsForm";
 
-const Dialogs = (props) => {
-  const dialogs = props.messagePage.dialogs
+const Dialogs = ({messagePage,addNewMessage}) => {
+  const dialogs = messagePage.dialogs
     .map(el => <DialogItem name={el.name} id={el.id}/>);
 
-  const messages = props.messagePage.messages
+  const messages = messagePage.messages
     .map(el => <Message message={el.message}/>);
 
   const onDialogsFormAdd = (message) => {
-    console.log(message);
-    props.addNewMessage(message.newMessageText);
+    addNewMessage(message.newMessageText);
   };
 
   return (

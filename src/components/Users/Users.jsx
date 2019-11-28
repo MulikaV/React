@@ -1,61 +1,29 @@
 import React from 'react';
 import s from './Users.module.css';
-import userAvatar from './../../assets/images/userimage.png'
-import {
-  Card, CardText, CardBody,
-  CardTitle, Button
-} from 'reactstrap';
 import Pagination from "react-js-pagination";
-import {NavLink} from "react-router-dom";
+import User from "./User";
 
-
-
-
-const Users = (props) => {
-
-
+const Users = ({currentPage,pageSize,totalUsersCount,onPageChanged,users,followingInProgress,unfollowUser,followUser}) => {
   return <div>
     <div className={s.left}>
       <Pagination
         hideDisabled
-        activePage={props.currentPage}
-        itemsCountPerPage={props.pageSize}
-        totalItemsCount={props.totalUsersCount}
+        activePage={currentPage}
+        itemsCountPerPage={pageSize}
+        totalItemsCount={totalUsersCount}
         pageRangeDisplayed={5}
-        onChange={props.onPageChanged}
+        onChange={onPageChanged}
       />
     </div>
 
-
     <div className={s.users}>
       {
-        props.users.map(u => (
-
-          <Card key={u.id} className={s.userCard}>
-            <NavLink to={'/profile/' + u.id}>
-              <img className={s.userAvatar} src={u.photos.small != null ? u.photos.small : userAvatar} alt="avatar"/>
-            </NavLink>
-            <CardBody>
-              <CardTitle>
-                <div>{u.name}</div>
-              </CardTitle>
-              <CardText>
-                <div>{u.status}</div>
-              </CardText>
-              {u.followed
-                ? <Button
-                  disabled={props.followingInProgress.some(id => id === u.id)}
-                  onClick={() => {
-                    props.unfollowUser(u.id);
-                  }}>Unfollow</Button>
-                : <Button
-                  disabled={props.followingInProgress.some(id => id === u.id)}
-                  onClick={() => {
-                    props.followUser(u.id);
-                  }}>Follow</Button>}
-            </CardBody>
-          </Card>
-
+        users.map(u => (
+          <User key={u.id} user={u}
+                followingInProgress={followingInProgress}
+                unfollowUser={unfollowUser}
+                followUser={followUser}
+          />
         ))
       }
     </div>

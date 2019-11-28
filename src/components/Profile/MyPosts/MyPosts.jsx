@@ -6,15 +6,13 @@ import {compose} from "redux";
 import {connect} from "react-redux";
 import {addNewPost} from "../../../Redux/profile-reducer";
 
-const MyPosts = React.memo((props) => {
-
+const MyPosts = React.memo(({posts,addNewPost}) => {
 
   const addPost = (value) => {
-    debugger;
-    props.addNewPost(value.newPostText);
+    addNewPost(value.newPostText);
   };
 
-  const postsElements = props.posts
+  const postsElements = posts
     .map(el => <Post text={el.message} key={el.id} likesCount={el.likesCount}/>);
 
   return (
