@@ -2,54 +2,55 @@ import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {Route} from "react-router-dom";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-import LoginContainer from "./components/Login/loginContainer";
 import {connect} from "react-redux";
 import {initializeApp} from "./Redux/app-reducer";
 import Preloader from "./components/common/Preloader/Preloader";
+import {withSuspense} from "./hoc/withSuspense";
 
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContainer'));
+const UsersContainer = React.lazy(() => import('./components/Users/UsersContainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
+const LoginContainer = React.lazy(() => import('./components/Login/loginContainer'));
 
 class App extends React.Component {
 
 
-  componentDidMount() {
-    this.props.initializeApp();
-  }
-
-  render() {
-
-    if (!this.props.initialized) {
-      return <Preloader />
+    componentDidMount() {
+        this.props.initializeApp();
     }
 
-    return (
-      <div>
-        <HeaderContainer/>
-        <div className="container app-wrapper">
-          <Navbar/>
-          <div className='app-wrapper-content'>
-            <Route path="/dialogs"
-                   render={() => <DialogsContainer/>}/>
-            <Route path="/profile/:userId?"
-                   render={() => <ProfileContainer/>}/>
-            <Route path="/users" component={UsersContainer}/>
-            <Route path="/login" component={LoginContainer}/>
-          </div>
-          <div className="app-wrapper-aside">
-          </div>
-        </div>
-      </div>
-    )
-  }
+    render() {
+
+        if (!this.props.initialized) {
+            return <Preloader/>
+        }
+
+        return (
+            <div>
+                <HeaderContainer/>
+                <div className="container app-wrapper">
+                    <Navbar/>
+                    <div className='app-wrapper-content'>
+                        <Route path="/dialogs"
+                               render={withSuspense(DialogsContainer)}/>
+                        <Route path="/profile/:userId?"
+                               render={withSuspense(ProfileContainer)}/>
+                        <Route path="/users" render={withSuspense(UsersContainer)}/>
+                        <Route path="/login" render={withSuspense(LoginContainer)}/>
+                    </div>
+                    <div className="app-wrapper-aside">
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 
 const mapStateToProps = (state) => ({
-  initialized: state.app.initialized
+    initialized: state.app.initialized
 });
 
 
-export default connect(mapStateToProps,{initializeApp})(App);
+export default connect(mapStateToProps, {initializeApp})(App);

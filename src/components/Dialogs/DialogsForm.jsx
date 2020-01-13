@@ -7,7 +7,7 @@ let DialogsForm = ({handleSubmit}) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <Field name="newMessageText" element={"input"} component={Textarea} validate={maxLength50} />
+        <Field name="newMessageText" element={"input"} component={Textarea} validate={[maxLength50,required]} />
       </div>
       <div>
         <button type="submit">Add message</button>

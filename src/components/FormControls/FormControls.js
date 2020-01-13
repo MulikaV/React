@@ -8,7 +8,7 @@ export const Textarea = ({input, meta, ...props}) => {
     <textarea {...input} {...props}  className="form-control col-4" rows={"3"}/>
 
     {meta.touched && meta.error &&
-    <div className="alert alert-danger">{meta.error}</div>}
+    <div className="alert alert-danger col-sm-offset-1">{meta.error}</div>}
 
   </div>
 

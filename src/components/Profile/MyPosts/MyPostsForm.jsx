@@ -8,7 +8,7 @@ let MyPostsForm = ({handleSubmit}) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <Field component={Textarea} element={"textarea"} name="newPostText" validate={maxLength50}  />
+        <Field component={Textarea} element={"textarea"} name="newPostText" validate={[maxLength50,required]}  />
       </div>
       <div>
         <button type="submit">Add post</button>

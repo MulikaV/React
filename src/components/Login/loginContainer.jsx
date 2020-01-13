@@ -8,8 +8,6 @@ import {Redirect} from "react-router-dom";
 
 
 class LoginContainer extends React.Component {
-
-
   onLoginFormSubmit = (loginData) => {
     this.props.login(loginData.email, loginData.password, loginData.rememberMe);
   };
