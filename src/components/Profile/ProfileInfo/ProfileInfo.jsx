@@ -5,11 +5,16 @@ import userAvatar from './../../../assets/images/userimage.png';
 import ProfileStatus from "./ProfileStatus";
 
 
-const ProfileInfo = ({profile,status,updateStatus}) => {
+const ProfileInfo = ({profile,status,updateStatus,uploadAvatarImage,isOwner}) => {
 debugger;
   if (!profile) {
     return <Preloader/>
   }
+
+  const addImage = (e) => {
+    const photo = e.target.files[0];
+      uploadAvatarImage(photo);
+    };
 
   return (
 
@@ -17,6 +22,7 @@ debugger;
       <div className={s.profile}>
         <div className={s.avatar}>
           <img src={profile.photos.large != null ? profile.photos.large : userAvatar }/>
+            {isOwner&&     <input type={"file"} onChange={addImage}/> }
         </div>
         <div className={s.user_info}>
           <h2>{profile.fullName}</h2>
