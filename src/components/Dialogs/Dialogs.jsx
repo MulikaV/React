@@ -7,10 +7,9 @@ import DialogsForm from "./DialogsForm";
 
 const Dialogs = ({messagePage,addNewMessage}) => {
   const dialogs = messagePage.dialogs
-    .map(el => <DialogItem name={el.name} id={el.id}/>);
-
+    .map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>);
   const messages = messagePage.messages
-    .map(el => <Message message={el.message}/>);
+    .map(el => <Message key={el.id} message={el.message}/>);
 
   const onDialogsFormAdd = (message) => {
     addNewMessage(message.newMessageText);
@@ -19,7 +18,7 @@ const Dialogs = ({messagePage,addNewMessage}) => {
   return (
     <div className={s.dialogs}>
       <div className={s.dialogs_items}>
-        {dialogs}
+    {dialogs}
       </div>
       <div className={s.messages}>
         {messages}

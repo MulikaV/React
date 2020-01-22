@@ -11,3 +11,32 @@
 .description_block {
   padding: 10px;
 }
+
+.changeStatus {
+  width: 100%;
+}
+
+.changeStatus:hover {
+  display: block;
+  cursor: pointer;
+  background-color: #f0f2f5;
+}
+
+.contacts {
+  margin-left: 5px;
+}
+
+.editButton {
+  float: right;
+}
+
+.formInput {
+  float: right;
+}
+
+.user_info {
+  display: block;
+}
+.block {
+  margin-top: 10px;
+}

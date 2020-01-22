@@ -13,6 +13,7 @@ const Profile = (props) => {
                    updateStatus={props.updateStatus}
                    uploadAvatarImage ={props.uploadAvatarImage}
                    isOwner={props.isOwner}
+                   updateProfile={props.updateProfile}
       />
       <MyPosts />
     </div>

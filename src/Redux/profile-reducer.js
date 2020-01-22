@@ -1,4 +1,5 @@
 import {profileApi} from "../api/api";
+import {stopSubmit} from "redux-form";
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -57,7 +58,7 @@ export const setUserPhoto = (photos) => ({type: SET_USER_PHOTO, photos});
 export const getUserProfile = (userId) => {
 
     return async (dispatch) => {
-        let data = await profileApi.getProfile(userId);
+        const data = await profileApi.getProfile(userId);
         dispatch(setUserProfile(data));
     }
 };
@@ -66,7 +67,7 @@ export const getUserProfile = (userId) => {
 export const getUserStatus = (userId) => {
 
     return async (dispatch) => {
-        let data = await profileApi.getProfileStatus(userId);
+        const data = await profileApi.getProfileStatus(userId);
         dispatch(setUserStatus(data));
     }
 };
@@ -74,7 +75,7 @@ export const getUserStatus = (userId) => {
 export const uploadAvatarImage = (photo) => {
 
     return async (dispatch) => {
-        let data = await profileApi.updateAvatarImage(photo);
+        const data = await profileApi.updateAvatarImage(photo);
 
         dispatch(setUserPhoto(data.data.photos));
     }
@@ -82,11 +83,23 @@ export const uploadAvatarImage = (photo) => {
 
 
 export const updateStatus = (status) => {
-
     return async (dispatch) => {
-        let data = await profileApi.updateStatus(status);
+        const data = await profileApi.updateStatus(status);
         if (data.resultCode === 0) {
             dispatch(setUserStatus(status));
+        }
+    }
+};
+export const updateProfile = (profile) => {
+    return async (dispatch,getState) => {
+        const userId = getState().auth.userId;
+        const data = await profileApi.updateProfile(profile);
+        debugger;
+        if (data.resultCode === 0) {
+            dispatch(getUserProfile(userId));
+        } else {
+            dispatch(stopSubmit("editProfileData", {_error: data.messages[0]}));
+            return Promise.reject({_error: data.messages[0]});
         }
     }
 };

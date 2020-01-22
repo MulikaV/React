@@ -44,7 +44,6 @@ export const setAuthData = () => async (dispatch) => {
 
 export const login = (email, password, rememberMe) => async (dispatch) => {
   const data = await authApi.login(email, password, rememberMe);
-
   if (data.resultCode === 0) {
     dispatch(setAuthData());
   } else {

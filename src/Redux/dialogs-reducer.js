@@ -3,9 +3,9 @@ const ADD_MESSAGE = 'ADD-MESSAGE';
 const initialState = {
   messages: [
     {id: 1, message: 'Hello'},
-    {id: 1, message: 'It\'s me'},
-    {id: 1, message: 'Mother facker'},
-    {id: 1, message: 'Yo Yo Yo'}
+    {id: 2, message: 'It\'s me'},
+    {id: 3 ,message: 'Mother facker'},
+    {id: 4, message: 'Yo Yo Yo'}
   ],
   dialogs: [
     {id: 1, name: 'Dmitriy'},
